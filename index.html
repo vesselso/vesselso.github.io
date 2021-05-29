@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <!-- Primary Meta Tags -->
+  <title>Vessel - Join the waitlist. Lightning fast Moodle experience.</title>
+  <meta name="title" content="Vessel - Join the waitlist. Lightning fast Moodle experience.">
+  <meta name="description"
+    content="Autologin. Quick search. Notifications. Dark mode. Everything you hated about Moodle, removed. Vessel is a complete reimagination of the Moodle experience, built on top of Moodle.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vessel.so/">
+  <meta property="og:title" content="Vessel - Join the waitlist. Lightning fast Moodle experience.">
+  <meta property="og:description"
+    content="Autologin. Quick search. Notifications. Dark mode. Everything you hated about Moodle, removed. Vessel is a complete reimagination of the Moodle experience, built on top of Moodle.">
+  <meta property="og:image" content="https://vessel.so/social/socialimg.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://vessel.so/">
+  <meta property="twitter:title" content="Vessel - Join the waitlist. Lightning fast Moodle experience.">
+  <meta property="twitter:description"
+    content="Autologin. Quick search. Notifications. Dark mode. Everything you hated about Moodle, removed. Vessel is a complete reimagination of the Moodle experience, built on top of Moodle.">
+  <meta property="twitter:image" content="https://vessel.so/social/socialimg.jpg">
+
+  <link rel="stylesheet" href="/sass/style.min.css" />
+  <link rel="shortcut icon" href="/Favicon/vessel-16.ico" type="image/x-icon" />
+  <link rel="icon" href="/Favicon/vessel-16.ico" type="image/x-icon" />
+</head>
+
+<body>
+  <header>
+    <nav>
+      <img src="/UI_resource/Vessel_black/VesselBlack200.png" srcset="
+            /UI_resource/Vessel_black/VesselBlack200.png 200w,
+            /UI_resource/Vessel_black/VesselBlack300.png 300w
+          " class="identifier" id="black-identifier" alt="" />
+      <img src="/UI_resource/Vessel_white/VesselWhite200.png" srcset="
+            /UI_resource/Vessel_white/VesselWhite200.png 200w,
+            /UI_resource/Vessel_white/VesselWhite300.png 300w
+          " alt="" class="identifier" id="white-identifier" />
+      <a href="#ending"><button class="cta-signup">Join waitlist</button></a>
+    </nav>
+  </header>
+  <section class="intro" id="intro-position">
+    <div class="intro-text-container">
+      <h4>introducing Vessel</h4>
+      <h1>
+        Moodle that's <br /><span class="gradient-text">fast and snappy.</span>
+      </h1>
+      <p>
+        Vessel is a complete reimagination <br />of the Moodle experience,<br />
+        built on top of Moodle.
+      </p>
+    </div>
+    <div class="email-container">
+      <span id="emailbox1">
+        <input id="email" type="text" name="email" placeholder="> carl" />
+        <p>@connect.hku.hk</p>
+      </span>
+      <button onclick="sendone()">
+        <p>Join the waitlist -></p>
+      </button>
+    </div>
+    <div class="intro-text-container2">
+      <p>Available for macOS and Windows. Free</p>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyCWPw6sNQTEEKj5wSC2xD6onr4HrwkVnLM",
+        authDomain: "vessel-faed3.firebaseapp.com",
+        databaseURL: "https://vessel-faed3.firebaseio.com",
+        projectId: "vessel-faed3",
+        storageBucket: "vessel-faed3.appspot.com",
+        messagingSenderId: "39313258652",
+        appId: "1:39313258652:web:fa195fb9f9a30f92f49559",
+        measurementId: "G-CCNQMPNCRP"
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+      var sendone = async () => {
+        try {
+          var uid = document.getElementById("email").value;
+          var regex = new RegExp("^[A-Za-z0-9._+-][A-Za-z0-9._+-]+$");
+          if (regex.test(uid)) {
+            console.log("uid checked")
+            const InvitedListRef = firebase.firestore().collection('AppInfo').doc('InvitedList')
+            const updateInvitedList = await InvitedListRef.update({
+              Invited: firebase.firestore.FieldValue.arrayUnion(uid)
+            })
+            console.log("updated")
+            window.location.href = "https://vesselso.typeform.com/to/PoZYcEOA#email=" + uid + "@connect.hku.hk"
+          } else {
+            document.getElementById("emailbox1").style.border = "1px solid #FD0000";
+            document.getElementById("email").style.color = "#FD0000";
+          }
+        } catch (err) {
+          // console.log(err)
+        }
+      }
+    </script>
+    <img src="./UI_resource/HeroImage/Hero320.png" srcset="
+          ./UI_resource/HeroImage/Hero320.png   320w,
+          ./UI_resource/HeroImage/Hero640.png   640w,
+          ./UI_resource/HeroImage/Hero960.png   960w,
+          ./UI_resource/HeroImage/Hero1280.png 1280w,
+          ./UI_resource/HeroImage/Hero1920.png 1920w
+        " class="intro-ui" alt="" />
+  </section>
+  <section class="features">
+    <div class="section-header">
+      <h1>Why you'll love using Vessel</h1>
+    </div>
+    <div class="auto-login features-division">
+      <div class="features-text-container">
+        <h2>Auto-login. <br />Never type in another password again.</h2>
+        <p>
+          Vessel saves your Moodle password on your computer using AES-256
+          encryption. The result? Less typing, more focusing.
+        </p>
+      </div>
+
+      <div class="features-img-container">
+        <img src="/UI_resource/Autologin/Autologin320.png" srcset="
+              /UI_resource/Autologin/Autologin320.png   320w,
+              /UI_resource/Autologin/Autologin640.png   640w,
+              /UI_resource/Autologin/Autologin960.png   960w,
+              /UI_resource/Autologin/Autologin1280.png 1280w
+            " class="auto-login-ui" alt="" />
+      </div>
+    </div>
+
+    <div class="table-of-content features-division">
+      <div class="features-text-container">
+        <h2>Table of contents. <br />Go anywhere with one click.</h2>
+        <p>
+          Hate the main screen? We replaced it with a content menu that sits
+          on the top and lets you go anywhere fast.
+        </p>
+      </div>
+      <div class="features-img-container">
+        <img src="/UI_resource/TableofContent/Table320.png" srcset="
+              /UI_resource/TableofContent/Table320.png   320w,
+              /UI_resource/TableofContent/Table640.png   640w,
+              /UI_resource/TableofContent/Table960.png   960w,
+              /UI_resource/TableofContent/Table1280.png 1280w,
+              /UI_resource/TableofContent/Table1920.png 1920w
+            " alt="" class="table-of-content-ui" />
+      </div>
+    </div>
+  </section>
+  <section id="lightning">
+    <div id="lightning-text-container">
+      <h2>Lightning fast page loads. <br />Everything under 200ms.</h2>
+      <p>
+        Vessel stores your course pages, assignments, and materials on your
+        computer. Study anywhere, even when Moodle is down.
+      </p>
+    </div>
+  </section>
+  <section class="features">
+    <div class="notification features-division">
+      <div class="features-text-container">
+        <h2>
+          Notifications. <br />Because you've got better stuff to do than
+          checking Moodle.
+        </h2>
+        <p>
+          You shouldn’t have to manually check your course page every time
+          your professor uploads a lecture slide. We’ll keep track of the
+          admin, so you can keep up with your learning.
+        </p>
+      </div>
+      <div class="features-img-container">
+        <img src="/UI_resource/Notifications/Notifications320.png" srcset="
+              /UI_resource/Notifications/Notifications320.png   320w,
+              /UI_resource/Notifications/Notifications640.png   640w,
+              /UI_resource/Notifications/Notifications960.png   960w,
+              /UI_resource/Notifications/Notifications1280.png 1280w,
+              /UI_resource/Notifications/Notifications1920.png 1920w
+            " alt="" class="notification-ui" />
+      </div>
+    </div>
+  </section>
+  <section class="theme-switch">
+    <div class="theme-background-img-container">
+      <img src="/UI_resource/ThemesBg/flower320.jpg" srcset="
+            /UI_resource/ThemesBg/flower320.jpg   320w,
+            /UI_resource/ThemesBg/flower640.jpg   640w,
+            /UI_resource/ThemesBg/flower960.jpg   960w,
+            /UI_resource/ThemesBg/flower1280.jpg 1280w,
+            /UI_resource/ThemesBg/flower1920.jpg 1920w,
+            /UI_resource/ThemesBg/flower2560.jpg 2560w
+          " alt="" />
+    </div>
+    <div class="theme-heading-container">
+      <h2 id="theme-heading">Themes. <br />We've got them.</h2>
+    </div>
+    <div class="theme-img-container">
+      <img src="/UI_resource/Themes/Themes320.png" srcset="
+            /UI_resource/Themes/Themes320.png   320w,
+            /UI_resource/Themes/Themes640.png   640w,
+            /UI_resource/Themes/Themes960.png   960w,
+            /UI_resource/Themes/Themes1280.png 1280w,
+            /UI_resource/Themes/Themes1920.png 1920w
+          " id="theme-img" alt="" />
+    </div>
+    <div class="theme-text-container">
+      <p>
+        Choose from 5+ hand-crafted themes. <br />Or upload a custom wallpaper
+        to make your Vessel one-of-a-kind.
+      </p>
+    </div>
+  </section>
+  <section class="improved">
+    <div id="section-header-2" class="section-header">
+      <h1>Plus, things we've <br />improved from Moodle.</h1>
+    </div>
+    <div class="improved-box-grid">
+      <div class="download improved-box-text-container">
+        <div class="svg-container">
+          <img src="/UI_resource/[SVG] Icons/download.svg" alt="" />
+        </div>
+        <h3>Download all materials in a click</h3>
+        <p>
+          Press once, download everything in a course.
+        </p>
+      </div>
+      <div class="view improved-box-text-container">
+        <div class="svg-container">
+          <img src="/UI_resource/[SVG] Icons/view.svg" alt="" />
+        </div>
+        <h3>View course files directly in app</h3>
+        <p>
+          No more waiting for Powerpoint to launch.
+        </p>
+      </div>
+      <div class="bookmarks improved-box-text-container">
+        <div class="svg-container">
+          <img src="/UI_resource/[SVG] Icons/bookmark.svg" alt="" />
+        </div>
+        <h3>Bookmarks & comments</h3>
+        <p>
+          Keep all your bookmarks in one place.
+        </p>
+      </div>
+      <div class="mode improved-box-text-container">
+        <div class="svg-container">
+          <img src="/UI_resource/[SVG] Icons/dark.svg" alt="" />
+        </div>
+        <h3>Dark mode</h3>
+        <p>
+          Use light or dark, your choice.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="ending" id="ending">
+    <div class="ending-text-container">
+      <h4>exclusive beta</h4>
+      <h1>
+        Join the <br /><span class="gradient-text">speed revolution.</span>
+      </h1>
+      <p>Vessel is everything you hated <br />about Moodle, removed.</p>
+      <p class="meet">Moodle, meet Vessel</p>
+    </div>
+
+    <div class="email-container">
+      <span id="emailbox2">
+        <input id="email2" type="text" name="email" placeholder="> carl" />
+
+        <div class="vertical-stroke"></div>
+
+        <p>@connect.hku.hk</p>
+      </span>
+      <button onclick="sendtwo()">
+        <p>Join the waitlist -></p>
+      </button>
+    </div>
+    <div class="ending-text-container2">
+      <p>Available for macOS and Windows. Free</p>
+    </div>
+    <script>
+      var sendtwo = async () => {
+        try {
+          var uid = document.getElementById("email2").value;
+          var regex = new RegExp("^[A-Za-z0-9._+-][A-Za-z0-9._+-]+$");
+          if (regex.test(uid)) {
+            console.log("uid checked")
+            const InvitedListRef = firebase.firestore().collection('AppInfo').doc('InvitedList')
+            
+            const updateInvitedList = await InvitedListRef.update({
+              Invited: firebase.firestore.FieldValue.arrayUnion(uid)
+            })
+            console.log("updated")
+            window.location.href = "https://vesselso.typeform.com/to/PoZYcEOA#email=" + uid + "@connect.hku.hk"
+          } else {
+            document.getElementById("emailbox2").style.border = "1px solid #FD0000";
+            document.getElementById("email2").style.color = "#FD0000";
+          }
+        } catch (err) {
+          // console.log(err)
+        }
+      }
+    </script>
+  </section>
+  <section class="FAQ">
+    <div class="FAQ-trigger-container">
+      <h3>FAQ</h3>
+      <h3 class="FAQ-trigger">-></h3>
+    </div>
+    <div class="FAQ-text">
+      <div class="FAQ-box">
+        <h4>Can I use Vessel with HKU Moodle?</h4>
+        <p>
+          Yes. Vessel is built on top of Moodle, so you can use Vessel like
+          you would on Moodle.
+        </p>
+      </div>
+      <div class="FAQ-box">
+        <h4>Is Vessel free of charge?</h4>
+        <p>
+          Yes. Vessel is free of charge.
+        </p>
+      </div>
+      <div class="FAQ-box">
+        <h4>Is Vessel secure?</h4>
+        <p>
+          Short answer: yes.
+          Your password and files are only stored on your computer, and are never
+          transferred to our servers. Moreover, every password is encrypted with AES-256,
+          the encryption standard used by banks and military.
+        </p>
+      </div>
+      <div class="FAQ-box">
+        <h4>How does Vessel get data from Moodle?</h4>
+        <p>
+          Vessel uses client-side web scraping, which allows the Vessel app on
+          your computer to access the Moodle website securely and download
+          course materials.
+        </p>
+      </div>
+      <div class="FAQ-box">
+        <h4>Where do I learn more?</h4>
+        <p>
+          Feel free to shoot us an email:
+          <a href="mailto: team@vessel.so">team@vessel.so</a> :)
+        </p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="logo-container">
+      <img src="/UI_resource/Vessel_logo/Vessel50.png" srcset="
+            /UI_resource/Vessel_logo/Vessel50.png   50w,
+            /UI_resource/Vessel_logo/Vessel100.png 100w
+          " alt="" />
+    </div>
+    <div class="footer-text-container">
+      <p class="designed-in-hk">
+        Designed in Hong Kong <br /><span class="contact-us">
+          Contact us at
+          <a href="mailto: team@vessel.so">team@vessel.so</a></span>
+      </p>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"
+    integrity="sha256-XDWrid8aGX+NZwSY7JzTu6oWArI71Sw+aUZ9Hd0P5mo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/ScrollTrigger.min.js"
+    integrity="sha256-VOmGZIiFXM1EqfqanRqwQ/1JfzredGUMk/M6AAPMdRw=" crossorigin="anonymous"></script>
+  <script src="/main.js"></script>
+  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" /></noscript>
+</body>
+
+</html>
